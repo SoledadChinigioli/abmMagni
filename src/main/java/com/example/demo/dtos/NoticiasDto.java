@@ -2,6 +2,11 @@ package com.example.demo.dtos;
 
 import java.sql.Date;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.example.demo.entidades.Empresa;
+
 public class NoticiasDto {
 	
 	private int id;
@@ -12,6 +17,11 @@ public class NoticiasDto {
 	private char publicada;
 	private Date fechaPublicacion;
 	private int idEmpresa;
+	
+	@ManyToOne
+	@JoinColumn(name="noticias Empresa")
+	private Empresa empresa;
+	
 
 	public NoticiasDto() {
 		super();

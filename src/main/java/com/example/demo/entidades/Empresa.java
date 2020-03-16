@@ -1,6 +1,8 @@
 package com.example.demo.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
@@ -29,8 +31,8 @@ public class Empresa implements Serializable{
 	private String email;
 	
 	@OneToMany (mappedBy = "Empresa")//(cascade = CascadeType.ALL)
-	
-	private Noticias noticias;
+	private List<Noticias> noticias = new ArrayList();
+	//private Noticias noticias;
 	
 	
 	public Empresa () {
