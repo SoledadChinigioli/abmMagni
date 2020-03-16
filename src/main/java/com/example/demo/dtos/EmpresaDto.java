@@ -12,13 +12,15 @@ public class EmpresaDto {
 	private String domicilio;
 	private String email;
 	
+	
 	public EmpresaDto () {
 		super();
 	}
 
-	public EmpresaDto(String denominacion, String telefono, String horarioAtencion, String quienesSomos, float latitud,
+	public EmpresaDto(int id,String denominacion, String telefono, String horarioAtencion, String quienesSomos, float latitud,
 			float longitud, String domicilio, String email) {
 		super();
+		this.id = id;
 		this.denominacion = denominacion;
 		this.telefono = telefono;
 		this.horarioAtencion = horarioAtencion;

@@ -2,9 +2,12 @@ package com.example.demo.entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 public class Empresa implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -25,16 +28,20 @@ public class Empresa implements Serializable{
 	private String domicilio;
 	private String email;
 	
+	@OneToMany (mappedBy = "Empresa")//(cascade = CascadeType.ALL)
+	
+	private Noticias noticias;
+	
 	
 	public Empresa () {
 		super();
 	}
 
 
-	public Empresa(String denominacion, String telefono, String horarioAtencion, String quienesSomos,
+	public Empresa(int id,String denominacion, String telefono, String horarioAtencion, String quienesSomos,
 			float latitud, float longitud, String domicilio, String email) {
 		
-		
+		this.id = id;
 		this.denominacion = denominacion;
 		this.telefono = telefono;
 		this.horarioAtencion = horarioAtencion;
