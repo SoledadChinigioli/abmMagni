@@ -66,7 +66,17 @@ public class EmpresaService {
 		EmpresaDto unDto = new EmpresaDto();
 		
 		try {
-			Empresa entity = entityOptional.get();		
+			Empresa entity = entityOptional.get();	
+			
+			unDto.setId(entity.getId());
+			unDto.setDenominacion(entity.getDenominacion());
+			unDto.setTelefono(entity.getTelefono());
+			unDto.setHorarioAtencion(entity.getHorarioAtencion());
+			unDto.setQuienesSomos(entity.getQuienesSomos());
+			unDto.setLongitud(entity.getLongitud());
+			unDto.setLatitud(entity.getLatitud());
+			unDto.setDomicilio(entity.getDomicilio());
+			unDto.setEmail(entity.getEmail());
 			
 			
 			
@@ -76,6 +86,88 @@ public class EmpresaService {
 			// TODO: handle exception
 			throw new Exception();
 		}
+		
+	}
+	
+	//------------------------------------SAVE------------------------------------
+	@Transactional
+	public EmpresaDto save (EmpresaDto dto) throws Exception{
+		Empresa entity = new Empresa();
+		entity.setDenominacion(dto.getDenominacion());
+		entity.setTelefono(dto.getTelefono());
+		entity.setHorarioAtencion(dto.getHorarioAtencion());
+		entity.setQuienesSomos(dto.getQuienesSomos());
+		entity.setLongitud(dto.getLongitud());
+		entity.setLatitud(dto.getLatitud());
+		entity.setDomicilio(dto.getDomicilio());
+		entity.setEmail(dto.getEmail());
+		
+		try {
+			entity = repository.save(entity);
+			
+			dto.setId(entity.getId());
+			return dto;
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new Exception();
+		}
+		
+	}
+	//------------------------------------UPDATE-----------------------------------
+	
+	@Transactional
+	public EmpresaDto update (int id, EmpresaDto dto) throws Exception{
+		
+		Optional<Empresa> entityOptional = repository.findById(id);
+		
+		try {
+			Empresa entity = entityOptional.get();
+			
+			entity.setId(id);
+			entity.setDenominacion(dto.getDenominacion());
+			entity.setTelefono(dto.getTelefono());
+			entity.setHorarioAtencion(dto.getHorarioAtencion());
+			entity.setQuienesSomos(dto.getQuienesSomos());
+			entity.setLongitud(dto.getLongitud());
+			entity.setLatitud(dto.getLatitud());
+			entity.setDomicilio(dto.getDomicilio());
+			entity.setEmail(dto.getEmail());
+			
+			
+			repository.save(entity);
+			dto.setId(entity.getId());
+			return dto;
+			
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new Exception();
+		}
+	}
+	
+	//----------------------------------DELETE-------------------------------------
+	
+	public boolean delete (int id) throws Exception {
+		try {
+			if (repository.existsById(id)) {
+				
+				repository.deleteById(id);
+				return true;
+				
+			}else {
+				
+				throw new Exception();
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new Exception();	
+		}
+		
 		
 	}
 	
