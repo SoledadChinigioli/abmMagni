@@ -18,9 +18,7 @@ public class NoticiasDto {
 	private Date fechaPublicacion;
 	private int idEmpresa;
 	
-	@ManyToOne
-	@JoinColumn(name="noticias Empresa")
-	private Empresa empresa;
+	
 	
 
 	public NoticiasDto() {
